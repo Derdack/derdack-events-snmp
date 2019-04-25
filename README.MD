@@ -23,7 +23,7 @@ This tool parses one or more MIB files (File -> Import MIB file). If these were 
 
 Once you have created this XML file, copy it to your Enterprise Alert Server into the directory C:\Program Files\Enterprise Alert\SNMPConnector\MIB\XML\. You can also customize this path in the JavaScript SNMP-MIB-Importer3.js.
 
-**Import in Enterprise Alert**  
+**Import into Enterprise Alert**  
 In GitHub at https://github.com/derdack/derdack-events-snmp we have provided the JavaScript SNMP-MIB-Importer.js. Please also copy this script to your Enterprise Alert Server in the above directory. Please adjust the variable STRING_DB_CONNECTION in the script so that it contains the connection string to your Enterprise Alert database. Now you can execute the script.
 
 Done. Now the parameter names in the SNMP event should contain meaningful names.
