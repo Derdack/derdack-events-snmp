@@ -45,20 +45,37 @@ function processFile(sFile) {
 	}
 	
 	oXml.loadXML(sContent);
-	var aOid 			= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID + "/text()");
-	var aName 			= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_LABEL + "/text()");
-	var aDescription 	= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_DESCRIPTION + "/text()");
+	
+	var aOid = [];
+	var aName = [];
+	var aDescription = [];
+	
+	for (var i = 0; i <= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID).length; i++) {
+
+		aOid[i] = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID + "[" + i + "]/text()")[0].nodeValue;
+		aName[i] = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_LABEL + "[" + i + "]/text()")[0].nodeValue;
+
+		// Description might be empty
+		var node = null;
+		node = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_DESCRIPTION + "[" + i + "]/text()")[0];
+		if (node == null) {
+			aDescription[i] = "";
+		}
+		else {
+			aDescription[i] = node.nodeValue;
+		}
+	}
 	
 	if (aOid.length != aName.length || aName.length != aDescription.length) {
 		throw("Different entries of OIDs, names, and descriptions detected. Please check content of " + sFile + "!");
 	}
 	
 	for (var i = 0; i < aOid.length; i++) {
-		var sOid = aOid[i].nodeValue.replace(/\s*/g, "");
+		var sOid = aOid[i].replace(/\s*/g, "");
 		aRes[i] = {
 			"id"			: sOid,
-			"name"			: aName[i].nodeValue.replace(/\s*/g, ""),
-			"description"	: aDescription[i].nodeValue.replace(/["'\t\r\n]/g, "").replace(/^[ ]*/g, "").replace(/[ ]*$/g, "").substr(0, 255)
+			"name"			: aName[i].replace(/\s*/g, ""),
+			"description"	: aDescription[i].replace(/["'\t\r\n]/g, "").replace(/^[ ]*/g, "").replace(/[ ]*$/g, "").substr(0, 255)
 		}
 	}
 	
