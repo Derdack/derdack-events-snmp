@@ -8,6 +8,7 @@ If you use other tools you may have to adapt the STRING_DESCRIPTOR_... variables
 For further support contact us at support@de.derdack.com
 
 v1.0.0 (02.08.2018, Frank Gutacker)
+v1.1.0 (03-02-2022, Ronald): Supporting empty description fields.
 
 Copyright 2018 Derdack GmbH, www.derdack.com, Enterprise Alert is a registered trademark of Derdack GmbH
 */
@@ -52,12 +53,12 @@ function processFile(sFile) {
 	
 	for (var i = 0; i <= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID).length; i++) {
 
-		aOid[i] = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID + "[" + i + "]/text()")[0].nodeValue;
-		aName[i] = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_LABEL + "[" + i + "]/text()")[0].nodeValue;
+		aOid[i] = oXml.selectNodes("(//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID + ")[" + i + "]/text()")[0].nodeValue;
+		aName[i] = oXml.selectNodes("(//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_LABEL + ")[" + i + "]/text()")[0].nodeValue;
 
 		// Description might be empty
 		var node = null;
-		node = oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_DESCRIPTION + "[" + i + "]/text()")[0];
+		node = oXml.selectNodes("(//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_DESCRIPTION + ")[" + i + "]/text()")[0];
 		if (node == null) {
 			aDescription[i] = "";
 		}
