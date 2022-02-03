@@ -51,7 +51,7 @@ function processFile(sFile) {
 	var aName = [];
 	var aDescription = [];
 	
-	for (var i = 0; i <= oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID).length; i++) {
+	for (var i = 0; i < oXml.selectNodes("//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID).length; i++) {
 
 		aOid[i] = oXml.selectNodes("(//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_OID + ")[" + i + "]/text()")[0].nodeValue;
 		aName[i] = oXml.selectNodes("(//" + STRING_DESCRIPTOR_ENTRY + "//" + STRING_DESCRIPTOR_LABEL + ")[" + i + "]/text()")[0].nodeValue;
