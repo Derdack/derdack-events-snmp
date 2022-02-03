@@ -10,7 +10,7 @@ For further support contact us at support@de.derdack.com
 v1.0.0 (02.08.2018, Frank Gutacker)
 v1.1.0 (03-02-2022, Ronald): Supporting empty description fields.
 
-Copyright 2018 Derdack GmbH, www.derdack.com, Enterprise Alert is a registered trademark of Derdack GmbH
+Copyright 2022 Derdack GmbH, www.derdack.com, Enterprise Alert is a registered trademark of Derdack GmbH
 */
 
 var INT_MAX_ERROR_COUNT				= 5;
